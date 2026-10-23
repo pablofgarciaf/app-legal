@@ -200,14 +200,14 @@ export default function MobileAppShell() {
   const roleConfig = roleStyles[role];
 
   return (
-    <div className="app-private min-h-screen bg-[var(--bg)] text-[var(--fg)] flex flex-col font-sans selection:bg-blue-500/30 selection:text-blue-200 transition-colors duration-200">
+    <div className="app-private app-shell min-h-screen bg-[var(--bg)] text-[var(--fg)] flex flex-col font-sans selection:bg-[var(--vis-gold)]/30 selection:text-[var(--vis-gold-soft)] transition-colors duration-200">
       {/* Background Ambient Glow */}
       <div className="fixed inset-0 pointer-events-none ambient-top -z-10" />
 
       {/* ========================================================================= */}
       {/* 🚀 BARRA MAESTRA DE ROLES & SISTEMA (VISIBLE EN MOVIL Y DESKTOP) */}
       {/* ========================================================================= */}
-      <div className="sticky top-0 z-40 glass border-b border-[var(--border)] px-3 py-2 sm:px-6 shadow-sm">
+      <div className="app-topbar sticky top-0 z-40 glass border-b border-[var(--border)] px-3 py-2 sm:px-6 shadow-sm">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5">
           {/* Left: Role indicator label */}
           <div className="flex items-center space-x-2 w-full sm:w-auto justify-between sm:justify-start">
@@ -1146,10 +1146,10 @@ export default function MobileAppShell() {
       {/* ========================================================================= */}
       {/* MOBILE BOTTOM NAVIGATION DOCK (< lg) */}
       {/* ========================================================================= */}
-      <nav className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-slate-950/95 backdrop-blur-2xl border-t border-slate-800 px-3 py-2 flex justify-around items-center text-[10px]">
+      <nav className="app-bottom-nav lg:hidden fixed bottom-0 inset-x-0 z-40 px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] flex justify-around items-center text-[10px]" aria-label="Navegación principal">
         <button
           onClick={() => setActiveTab("dashboard")}
-          className={`flex flex-col items-center py-1 px-2 rounded-xl transition-all active:scale-95 ${
+          className={`app-bottom-nav-item flex flex-col items-center py-1 px-2 rounded-xl transition-all active:scale-95 ${
             activeTab === "dashboard"
               ? "text-blue-400 font-bold"
               : "text-slate-400"
@@ -1161,7 +1161,7 @@ export default function MobileAppShell() {
 
         <button
           onClick={() => setActiveTab("casos")}
-          className={`flex flex-col items-center py-1 px-2 rounded-xl transition-all active:scale-95 ${
+          className={`app-bottom-nav-item flex flex-col items-center py-1 px-2 rounded-xl transition-all active:scale-95 ${
             activeTab === "casos"
               ? "text-blue-400 font-bold"
               : "text-slate-400"
@@ -1173,7 +1173,7 @@ export default function MobileAppShell() {
 
         <button
           onClick={() => setActiveTab("buzon")}
-          className={`flex flex-col items-center py-1 px-2 rounded-xl transition-all active:scale-95 relative ${
+          className={`app-bottom-nav-item flex flex-col items-center py-1 px-2 rounded-xl transition-all active:scale-95 relative ${
             activeTab === "buzon"
               ? "text-blue-400 font-bold"
               : "text-slate-400"
@@ -1186,7 +1186,7 @@ export default function MobileAppShell() {
 
         <button
           onClick={() => setActiveTab("ai")}
-          className={`flex flex-col items-center py-1 px-2 rounded-xl transition-all active:scale-95 ${
+          className={`app-bottom-nav-item flex flex-col items-center py-1 px-2 rounded-xl transition-all active:scale-95 ${
             activeTab === "ai"
               ? "text-blue-400 font-bold"
               : "text-slate-400"
@@ -1198,7 +1198,7 @@ export default function MobileAppShell() {
 
         <button
           onClick={() => setActiveTab("chat")}
-          className={`flex flex-col items-center py-1 px-2 rounded-xl transition-all active:scale-95 ${
+          className={`app-bottom-nav-item flex flex-col items-center py-1 px-2 rounded-xl transition-all active:scale-95 ${
             activeTab === "chat"
               ? "text-blue-400 font-bold"
               : "text-slate-400"
