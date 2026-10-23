@@ -5,3 +5,6 @@ node_modules/
 !.env.example
 *.docx
 *.log
+
+# TypeScript build cache
+tsconfig.tsbuildinfo
