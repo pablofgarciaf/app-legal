@@ -13,6 +13,6 @@ export async function POST(request: Request) {
   const { data: created, error } = await admin.auth.admin.createUser({ email, email_confirm: false, user_metadata: { full_name: fullName, phone, cedula, role: "CLIENTE" } });
   if (error || !created.user) return NextResponse.json({ error: "No se pudo iniciar el registro. Verifica que el correo no esté registrado." }, { status: 400 });
   const { error: profileError } = await admin.from("users").insert({ id: created.user.id, email, full_name: fullName, phone, cedula, role: "CLIENTE", is_active: true, must_change_password: true });
-  if (profileError) { await admin.auth.admin.deleteUser(created.user.id); return NextResponse.json({ error: "No se pudo crear el perfil." }, { status: 500 }); }
+  if (profileError) { await admin.auth.admin.deleteUser(created.user.id); console.error("client profile insert failed", { code: profileError.code, message: profileError.message }); return NextResponse.json({ error: "El registro está pendiente de activar en Supabase. Ejecuta la migración de clientes y vuelve a intentarlo." }, { status: 503 }); }
   return NextResponse.json({ ok: true, message: "Revisa tu correo para confirmar tu cuenta." }, { status: 201 });
 }
