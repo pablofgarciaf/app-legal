@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS public.subscriptions (
     tier subscription_tier NOT NULL,
     monthly_fee_cents INT NOT NULL DEFAULT 2900, -- $29.00 USD
     status payment_status NOT NULL DEFAULT 'ACTIVA',
-    payment_gateway VARCHAR(50) DEFAULT 'STRIPE_PAYPHONE',
+    payment_gateway VARCHAR(50) DEFAULT 'PAYPAL' -- PAYPAL, DEUNA, KUSHKI; activar solo con credenciales y webhook verificados,
     gateway_subscription_id VARCHAR(255),
     expires_at TIMESTAMPTZ,
     created_at TIMESTAMPTZ DEFAULT NOW()
@@ -197,3 +197,4 @@ CREATE POLICY crm_leads_access_policy ON public.crm_leads
     FOR ALL USING (
         EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid() AND role IN ('ADMIN', 'ABOGADO'))
     );
+
