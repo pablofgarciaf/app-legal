@@ -1,0 +1,10 @@
+"use client";
+import { FormEvent, useState } from "react";
+import Link from "next/link";
+
+export default function AfiliarsePage() {
+  const [form, setForm] = useState({ fullName: "", email: "", phone: "", cedula: "" });
+  const [message, setMessage] = useState(""); const [error, setError] = useState(""); const [loading, setLoading] = useState(false);
+  async function submit(event: FormEvent) { event.preventDefault(); setLoading(true); setError(""); setMessage(""); const r = await fetch("/api/auth/register-client", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(form) }); const data = await r.json(); if (!r.ok) setError(data.error ?? "No se pudo completar el registro."); else setMessage(data.message); setLoading(false); }
+  return <main className="min-h-screen flex items-center justify-center bg-[#f6f3ee] px-6 py-12 text-[#17211f]"><section className="w-full max-w-lg rounded-3xl bg-white p-8 shadow-[0_20px_60px_rgba(27,58,53,.12)]"><Link href="/" className="text-sm opacity-70">← Volver a VIS Legal</Link><h1 className="mt-8 text-3xl font-semibold">Crea tu espacio VIS Legal</h1><p className="mt-3 text-sm opacity-70">Registra tus datos y te enviaremos un correo para confirmar tu cuenta.</p><form onSubmit={submit} className="mt-8 space-y-4">{([["fullName","Nombre completo","text"],["email","Correo electrónico","email"],["phone","Teléfono","tel"],["cedula","Cédula ecuatoriana","text"]] as const).map(([key,label,type]) => <label key={key} className="block text-sm">{label}<input required type={type} value={form[key]} onChange={e => setForm({...form,[key]:e.target.value})} className="mt-2 w-full rounded-xl border border-[#d8d0c4] px-4 py-3" /></label>)}{error && <p role="alert" className="text-sm text-red-700">{error}</p>}{message && <p className="text-sm text-[#1b3a35]">{message}</p>}<button disabled={loading} className="w-full rounded-xl bg-[#b27a38] px-4 py-3 font-semibold text-white disabled:opacity-60">{loading ? "Registrando…" : "Solicitar acceso"}</button></form></section></main>;
+}

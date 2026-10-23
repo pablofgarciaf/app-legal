@@ -36,6 +36,7 @@ export default function SignInPage() {
           {error && <p role="alert" className="text-sm text-red-400">{error}</p>}
           <button disabled={loading} type="submit" className="w-full rounded-xl bg-[#b27a38] hover:bg-[#986329] px-4 py-3 font-semibold text-white disabled:opacity-60">{loading ? "Validando…" : "Ingresar"}</button>
         </form>
+        <p className="mt-6 text-center text-sm opacity-70">¿Aún no tienes cuenta? <Link href="/afiliarse" className="font-semibold text-[#1b3a35]">Afíliate aquí</Link></p>
       </section>
     </main>
   );
