@@ -112,11 +112,14 @@ export default function SignInPage() {
                 const Icon = role.Icon;
                 const active = selectedRole === role.role;
                 return (
-                  <button key={role.role} type="button" onClick={() => selectDemo(role)} className={`rounded-2xl border p-3 text-left transition ${active ? "border-[#b47a2c] bg-[#fff7e9] shadow-sm" : "border-[#e8e4dc] bg-[#fbfaf8] hover:border-[#c9b99e]"}`}>
+                  <div key={role.role} className={`rounded-2xl border p-3 text-left transition ${active ? "border-[#b47a2c] bg-[#fff7e9] shadow-sm" : "border-[#e8e4dc] bg-[#fbfaf8] hover:border-[#c9b99e]"}`}>
+                    <button type="button" onClick={() => selectDemo(role)} className="w-full text-left">
                     <Icon size={18} className={active ? "text-[#b47a2c]" : "text-[#56706b]"} />
                     <span className="mt-2 block text-xs font-semibold text-[#203b37]">{role.label}</span>
                     <span className="mt-1 block text-[10px] leading-4 text-[#83908b]">{role.description}</span>
-                  </button>
+                    </button>
+                    <Link href={`/app/demo?role=${role.role.toLowerCase()}`} className="mt-2 inline-flex text-[10px] font-semibold text-[#b47a2c] underline-offset-2 hover:underline">Ver panel demo →</Link>
+                  </div>
                 );
               })}
             </div>

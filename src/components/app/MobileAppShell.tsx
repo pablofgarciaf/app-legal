@@ -69,9 +69,9 @@ type AppTab =
   | "b2b"
   | "supabase";
 
-export default function MobileAppShell() {
+export default function MobileAppShell({ initialRole = "cliente" }: { initialRole?: UserRole } = {}) {
   const { theme, toggle: toggleTheme } = useTheme();
-  const [role, setRole] = useState<UserRole>("cliente");
+  const [role, setRole] = useState<UserRole>(initialRole);
   const [subscriptionTier, setSubscriptionTier] = useState<SubscriptionTier>("premium");
   const [activeTab, setActiveTab] = useState<AppTab>("dashboard");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
