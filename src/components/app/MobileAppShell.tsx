@@ -200,7 +200,7 @@ export default function MobileAppShell() {
   const roleConfig = roleStyles[role];
 
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-[var(--fg)] flex flex-col font-sans selection:bg-blue-500/30 selection:text-blue-200 transition-colors duration-200">
+    <div className="app-private min-h-screen bg-[var(--bg)] text-[var(--fg)] flex flex-col font-sans selection:bg-blue-500/30 selection:text-blue-200 transition-colors duration-200">
       {/* Background Ambient Glow */}
       <div className="fixed inset-0 pointer-events-none ambient-top -z-10" />
 
@@ -1451,3 +1451,4 @@ export default function MobileAppShell() {
     </div>
   );
 }
+

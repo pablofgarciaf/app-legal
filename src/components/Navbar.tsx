@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Scale, Sparkles, FileText, Menu, X, ArrowUpRight, ShieldCheck } from "lucide-react";
+import Link from "next/link";
 
 interface NavbarProps {
   onOpenConsultation: () => void;
@@ -89,6 +90,9 @@ export default function Navbar({ onOpenConsultation, onOpenProposal }: NavbarPro
 
         {/* Right Actions (Desktop) */}
         <div className="hidden lg:flex items-center space-x-3">
+          <Link href="/ingresar" className="px-4 py-2 rounded-full text-xs font-semibold text-slate-200 hover:text-gold-300 border border-white/15 hover:border-gold-500/40 transition-all">
+            Ingresar
+          </Link>
           <button
             onClick={onOpenProposal}
             className="px-3 py-1.5 rounded-full text-xs font-semibold text-gold-400/90 hover:text-gold-300 bg-gold-500/10 hover:bg-gold-500/20 border border-gold-500/30 transition-all active:scale-95 flex items-center space-x-1.5"
@@ -172,6 +176,9 @@ export default function Navbar({ onOpenConsultation, onOpenProposal }: NavbarPro
           </a>
 
           <div className="pt-2 flex flex-col space-y-2">
+            <Link href="/ingresar" onClick={() => setMobileMenuOpen(false)} className="w-full py-2.5 rounded-full text-center text-slate-200 border border-white/15">
+              Ingresar a la plataforma
+            </Link>
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
