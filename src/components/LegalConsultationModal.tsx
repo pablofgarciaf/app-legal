@@ -26,15 +26,18 @@ export default function LegalConsultationModal({ isOpen, onClose }: LegalConsult
   } | null>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setSubmitError(null);
+    try {
+      const response = await fetch("/api/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(formData) });
+      const result = await response.json().catch(() => null);
+      if (!response.ok) throw new Error(result?.error || "No se pudo registrar la solicitud.");
       const ticketNum = Math.floor(1000 + Math.random() * 9000);
       setSubmittedTicket({
         code: `VL-2026-${ticketNum}`,
@@ -52,11 +55,14 @@ export default function LegalConsultationModal({ isOpen, onClose }: LegalConsult
           minute: "2-digit",
         }),
       });
-    }, 1000);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "No se pudo registrar la solicitud.");
+    } finally { setIsSubmitting(false); }
   };
 
   const handleReset = () => {
     setSubmittedTicket(null);
+    setSubmitError(null);
     setFormData({
       name: "",
       phone: "",
@@ -144,6 +150,7 @@ export default function LegalConsultationModal({ isOpen, onClose }: LegalConsult
           ) : (
             /* Inquiry Intake Form */
             <form onSubmit={handleSubmit} className="space-y-4 text-xs">
+              {submitError && <div role="alert" className="flex items-start gap-2 rounded-xl border border-red-400/40 bg-red-500/10 p-3 text-red-200"><AlertCircle className="mt-0.5 h-4 w-4 shrink-0" /><span>{submitError}</span></div>}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label htmlFor="client-name" className="block text-slate-300 font-semibold mb-1">Nombre Completo *</label>
