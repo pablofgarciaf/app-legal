@@ -33,7 +33,7 @@ export async function POST(req: Request) {
     if (isRealGeminiKey) {
       try {
         const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-        const systemPrompt = `Eres el Asistente Jurídico Gemini de VIS LEGAL ABOGADOS / BIZ LEGAL S.A.S. especializado en legislación de la República del Ecuador (Constitución 2008, COGEP, COIP, Código del Trabajo, Código Civil, Ley de Compañías). Cita artículos exactos, términos procesales en días hábiles (Art. 73 COGEP), y redacta con lenguaje jurídico profesional ecuatoriano.`;
+        const systemPrompt = `Eres un asistente informativo de VIS Legal para legislación ecuatoriana. No eres abogado, no das asesoría definitiva ni calculas vencimientos. Usa solo fuentes verificadas disponibles en el contexto, indica incertidumbre, recomienda revisión humana y nunca inventes artículos, jurisprudencia o plazos.`;
         
         const geminiRes = await fetch(geminiUrl, {
           method: "POST",
@@ -58,7 +58,7 @@ export async function POST(req: Request) {
           if (generatedText) {
             return NextResponse.json({
               answer: generatedText,
-              provider: "Google Gemini 1.5 Flash (Live)",
+              provider: "Asistente informativo VIS Legal (revisión humana requerida)",
               citations: [
                 "Constitución de la República del Ecuador (CRE 2008)",
                 "Código Orgánico General de Procesos (COGEP)",
@@ -111,7 +111,7 @@ Para patrocinio específico o radicación de escritos ante las Unidades Judicial
 
     return NextResponse.json({
       answer: answerText,
-      provider: "Agente Gemini Legal AI (Ecuador Knowledge Engine)",
+      provider: "Base jurídica local VIS Legal (modo informativo)",
       citations,
       matchedArticles: matches.slice(0, 3),
       timestamp: new Date().toISOString(),
@@ -124,3 +124,4 @@ Para patrocinio específico o radicación de escritos ante las Unidades Judicial
     );
   }
 }
+

@@ -29,10 +29,8 @@ interface LegalChatMessage {
 }
 
 export default function LegalAIAssistant() {
-  const [geminiApiKey, setGeminiApiKey] = useState(
-    "AIzaSyDemoSampleKeyForGeminiLegalTesting2026"
-  );
   const [showKeyConfig, setShowKeyConfig] = useState(false);
+  const [geminiApiKey, setGeminiApiKey] = useState("");
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const [messages, setMessages] = useState<LegalChatMessage[]>([
@@ -135,15 +133,15 @@ Tengo indexado el marco normativo vigente de la **República del Ecuador**:
           <div>
             <div className="flex items-center space-x-2">
               <h2 className="font-bold text-sm sm:text-base text-white">
-                Agente Gemini Legal AI • Ecuador 24/7
+                Asistente jurídico informativo • Ecuador
               </h2>
               <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center space-x-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Gemini 1.5 Flash Activo</span>
+                <span>Modo informativo</span>
               </span>
             </div>
             <p className="text-[11px] text-slate-400">
-              Corpus normativo nacional: Constitución, COGEP, COIP, Código del Trabajo y Jurisprudencia
+              Respuestas orientativas con fuentes disponibles. Revisión profesional requerida.
             </p>
           </div>
         </div>
@@ -169,7 +167,7 @@ Tengo indexado el marco normativo vigente de la **República del Ecuador**:
               <span>Configuración de Google Gemini API Key</span>
             </div>
             <p className="text-[11px] text-slate-400">
-              Usa la clave de prueba preconfigurada o ingresa tu clave personal de Google AI Studio.
+              La clave se configura exclusivamente en el servidor; nunca la pegues en el navegador.
             </p>
           </div>
 
@@ -348,3 +346,7 @@ Tengo indexado el marco normativo vigente de la **República del Ecuador**:
     </div>
   );
 }
+
+
+
+
