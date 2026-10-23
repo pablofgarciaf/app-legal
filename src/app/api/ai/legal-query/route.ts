@@ -87,13 +87,13 @@ export async function POST(req: Request) {
 **1. Fundamento Normativo Oficial:**
 > "${topMatch.content}"
 
-**2. Dictamen Jurídico y Aplicación Práctica:**
+**2. Información general relacionada con tu consulta:**
 ${topMatch.application}
 
 **3. Directriz Procesal VIS LEGAL ABOGADOS:**
 • **Cómputo de Términos:** Conforme al Art. 73 del COGEP, todos los términos corren únicamente en días hábiles judiciales (excluyendo fines de semana y feriados nacionales decretados).
 • **Carga de la Prueba:** Toda alegación debe ser respaldada con prueba documental o testimonial anticipada antes de la audiencia preliminar o única.
-• **Validación Deontológica:** Dictamen emitido bajo la supervisión de letrados colegiados en el Foro de Abogados del Consejo de la Judicatura.`;
+• **Límite:** Esta es una respuesta automática informativa y requiere revisión profesional antes de tomar decisiones o presentar escritos.`;
     } else {
       answerText = `Su consulta referente a **"${query}"** ha sido analizada bajo los principios procesales vigentes en el Ecuador.
 
