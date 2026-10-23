@@ -45,3 +45,17 @@
 **Skills usadas/modificadas:** reglas-seguridad, registrar-avance.
 **Próximos pasos:** Validar visualmente el landing en navegador cuando `.next` no esté bloqueado por otro proceso.
 **Archivos modificados:** C:/Users/pablo/Documents/Judicial/src/app/page.tsx; C:/Users/pablo/Documents/Judicial/src/app/globals.css; C:/Users/pablo/Documents/Judicial/AVANCE.md
+
+## [2026-10-23] - Judicial - Codex
+**Qué se hizo:** Auditoría integral técnica, comercial y de producto para VIS Legal y preparación de propuesta de implementación de SinergIA Tech.
+**Resultado:** Se verificó build exitoso y se documentaron fortalezas y brechas: datos demo, Supabase pendiente de ejecución, IA aún por endurecer, cookies y textos legales incompletos, formularios y pagos por conectar. Se generó propuesta PDF con alcance, roadmap, criterios de aceptación y cotización preferencial Ecuador.
+**Skills usadas/modificadas:** reglas-seguridad, registrar-avance, documents.
+**Próximos pasos:** Ejecutar migraciones en Supabase, completar datos legales reales, retirar cualquier clave enviada desde cliente, sustituir demos y conectar pagos/webhooks antes de producción.
+**Archivos modificados:** C:/Users/pablo/Documents/Codex/2026-10-23/p/auditoria_vis_legal_sinergia.py; C:/Users/pablo/Documents/Codex/2026-10-23/p/outputs/Propuesta_Auditoria_Implementacion_VIS_Legal_SinergIA_Tech.pdf; C:/Users/pablo/Documents/Judicial/AVANCE.md
+
+## [2026-10-23] - Judicial - Codex
+**Qué se hizo:** Se generó identidad visual transparente de SinergIA y se reemplazó la propuesta interna por un documento comercial dirigido exclusivamente al cliente.
+**Resultado:** Logo PNG transparente guardado en el proyecto y propuesta comercial de cuatro páginas con alcance, cronograma, inversión preferencial de $2.490 + IVA y condiciones de entrega. La auditoría interna quedó fuera del documento comercial.
+**Skills usadas/modificadas:** reglas-seguridad, registrar-avance, documents, imagegen.
+**Próximos pasos:** Aplicar Supabase real, retirar datos demo del portal, conectar perfiles autenticados y cerrar cookies, pagos y agente IA antes de producción.
+**Archivos modificados:** C:/Users/pablo/Documents/Judicial/public/brand/sinergia-s-logo-transparent.png; C:/Users/pablo/Documents/Judicial/AVANCE.md; C:/Users/pablo/Documents/Codex/2026-10-23/p/outputs/Propuesta_Comercial_VIS_Legal_SinergIA_Tech.pdf
