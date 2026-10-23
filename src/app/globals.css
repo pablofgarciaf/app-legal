@@ -1,0 +1,265 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VIS LEGAL — Design System
+   Inspirado en: Apple iOS 18, Linear, Vercel, Stripe, Notion
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── EASING (Apple WWDC + Emil Kowalski) ──────────────────────────────── */
+:root {
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ─── DARK MODE (DEFAULT) — iOS obsidiana ─────────────────────────────── */
+:root, .dark {
+  --bg:           #000000;        /* iOS black puro */
+  --bg-1:         #0A0A0A;        /* page bg */
+  --bg-2:         #141414;        /* card */
+  --bg-3:         #1C1C1E;        /* elevated card - iOS systemGray6 */
+  --bg-4:         #2C2C2E;        /* hover / pressed */
+
+  --fg:           #FFFFFF;        /* primary text */
+  --fg-1:         rgba(255,255,255,0.85);  /* secondary */
+  --fg-2:         rgba(255,255,255,0.50);  /* tertiary */
+  --fg-3:         rgba(255,255,255,0.28);  /* placeholder */
+
+  --border:       rgba(255,255,255,0.08);
+  --border-2:     rgba(255,255,255,0.14);
+
+  /* iOS system accents */
+  --blue:         #0A84FF;  /* iOS blue */
+  --blue-bg:      rgba(10,132,255,0.15);
+  --blue-border:  rgba(10,132,255,0.3);
+  --green:        #30D158;
+  --green-bg:     rgba(48,209,88,0.12);
+  --orange:       #FF9F0A;
+  --orange-bg:    rgba(255,159,10,0.12);
+  --red:          #FF453A;
+  --red-bg:       rgba(255,69,58,0.12);
+  --purple:       #BF5AF2;
+  --purple-bg:    rgba(191,90,242,0.12);
+  --teal:         #5AC8F5;
+  --teal-bg:      rgba(90,200,245,0.12);
+  --indigo:       #5E5CE6;
+  --indigo-bg:    rgba(94,92,230,0.12);
+
+  --shadow-sm:    0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.4);
+  --shadow-md:    0 4px 16px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.4);
+  --shadow-lg:    0 12px 40px rgba(0,0,0,0.6), 0 4px 12px rgba(0,0,0,0.4);
+  --shadow-card:  0 0 0 0.5px rgba(255,255,255,0.06), 0 2px 12px rgba(0,0,0,0.4);
+
+  color-scheme: dark;
+}
+
+/* ─── LIGHT MODE — iOS blanco puro ────────────────────────────────────── */
+.light {
+  --bg:           #F2F2F7;        /* iOS systemGroupedBackground */
+  --bg-1:         #F2F2F7;
+  --bg-2:         #FFFFFF;        /* iOS secondarySystemGroupedBackground */
+  --bg-3:         #FFFFFF;
+  --bg-4:         rgba(0,0,0,0.06);
+
+  --fg:           #000000;
+  --fg-1:         rgba(0,0,0,0.75);
+  --fg-2:         rgba(0,0,0,0.45);
+  --fg-3:         rgba(0,0,0,0.25);
+
+  --border:       rgba(0,0,0,0.08);
+  --border-2:     rgba(0,0,0,0.14);
+
+  --blue:         #007AFF;  /* iOS light blue */
+  --blue-bg:      rgba(0,122,255,0.1);
+  --blue-border:  rgba(0,122,255,0.2);
+  --green:        #34C759;
+  --green-bg:     rgba(52,199,89,0.1);
+  --orange:       #FF9500;
+  --orange-bg:    rgba(255,149,0,0.1);
+  --red:          #FF3B30;
+  --red-bg:       rgba(255,59,48,0.1);
+  --purple:       #AF52DE;
+  --purple-bg:    rgba(175,82,222,0.1);
+  --teal:         #32ADE6;
+  --teal-bg:      rgba(50,173,230,0.1);
+  --indigo:       #5856D6;
+  --indigo-bg:    rgba(88,86,214,0.1);
+
+  --shadow-sm:    0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:    0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.06);
+  --shadow-lg:    0 12px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-card:  0 0 0 0.5px rgba(0,0,0,0.08), 0 2px 12px rgba(0,0,0,0.06);
+
+  color-scheme: light;
+}
+
+/* ─── BASE ──────────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "ss02", "cv01", "cv09";
+}
+
+/* ─── SMOOTH THEME TRANSITIONS ──────────────────────────────────────────── */
+body, aside, header, nav, main, div[class*="bg-"] {
+  transition: background-color 0.25s var(--ease-out), color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+
+/* ─── SCROLLBAR ─────────────────────────────────────────────────────────── */
+::-webkit-scrollbar          { width: 4px; height: 4px; }
+::-webkit-scrollbar-track    { background: transparent; }
+::-webkit-scrollbar-thumb    { background: var(--border-2); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--fg-2); }
+
+/* ─── iOS GLASS MATERIAL (vibrancy) ────────────────────────────────────── */
+/* Apple: "translucent layer that brings structure without stealing focus" */
+.glass {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+.dark .glass, :root .glass {
+  background: rgba(10, 10, 10, 0.85);
+  border: 0.5px solid rgba(255,255,255,0.09);
+}
+.light .glass {
+  background: rgba(242,242,247,0.88);
+  border: 0.5px solid rgba(0,0,0,0.08);
+}
+
+/* ─── iOS CARD ──────────────────────────────────────────────────────────── */
+/* Inspired by iOS grouped table view + Linear's card system */
+.ios-card {
+  background: var(--bg-2);
+  border: 0.5px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+}
+.ios-card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ─── iOS PRESS FEEDBACK (Emil Kowalski: "buttons must respond on press") ─ */
+.press {
+  transition: transform 120ms var(--ease-out), opacity 120ms var(--ease-out);
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.press:active {
+  transform: scale(0.97);
+  opacity: 0.85;
+}
+
+/* ─── FOCUS RING ────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ─── AMBIENT GLOW (dark mode) ──────────────────────────────────────────── */
+.dark .ambient-top, :root .ambient-top {
+  background: radial-gradient(
+    ellipse 90% 50% at 50% -5%,
+    rgba(10, 132, 255, 0.12) 0%,
+    transparent 65%
+  );
+}
+.light .ambient-top {
+  background: radial-gradient(
+    ellipse 90% 50% at 50% -5%,
+    rgba(0, 122, 255, 0.05) 0%,
+    transparent 65%
+  );
+}
+
+/* ─── SIDEBAR NAV ITEM ──────────────────────────────────────────────────── */
+.nav-item {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--fg-2);
+  transition:
+    background-color 120ms var(--ease-out),
+    color 120ms var(--ease-out),
+    transform 120ms var(--ease-out);
+}
+.nav-item:hover { color: var(--fg); background: var(--bg-4); }
+.nav-item:active { transform: scale(0.98); }
+.nav-item.active {
+  background: var(--bg-3);
+  color: var(--fg);
+  font-weight: 600;
+}
+
+/* ─── TEXT GRADIENT ──────────────────────────────────────────────────────── */
+.text-blue-ios { color: var(--blue); }
+.text-green-ios { color: var(--green); }
+.text-orange-ios { color: var(--orange); }
+.text-red-ios { color: var(--red); }
+.text-purple-ios { color: var(--purple); }
+
+/* ─── BADGE ──────────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* ─── MODAL OVERLAY ──────────────────────────────────────────────────────── */
+.modal-backdrop {
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+}
+.light .modal-backdrop {
+  background: rgba(0,0,0,0.25);
+}
+
+/* ─── ANIMATIONS ─────────────────────────────────────────────────────────── */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(0.8); }
+}
+
+.animate-slide-up  { animation: slide-up  0.22s var(--ease-out) both; }
+.animate-fade-in   { animation: fade-in   0.18s var(--ease-out) both; }
+.animate-scale-in  { animation: scale-in  0.16s var(--ease-out) both; }
+.animate-pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }

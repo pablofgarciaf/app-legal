@@ -1,0 +1,24 @@
+# VIS LEGAL ABOGADOS - Plataforma LegalTech Integral
+
+> Aprende. Previene. Consulta. Protege. Resuelve.
+> Comunidad jurídica digital para la sociedad, familias, emprendedores y empresas.
+> Titularidad tecnológica: BIZ LEGAL / VIS LEGAL ABOGADOS.
+
+## Resumen Ejecutivo
+VIS LEGAL ABOGADOS es una plataforma LegalTech de vanguardia que combina una firma jurídica con una aplicación móvil (iOS y Android), portal web de clientes, panel de gestión administrativa y membresía de prevención jurídica.
+
+## Propuesta de Valor y Modelo
+- **Cuenta Gratuita**: Acceso abierto a contenidos legales preventivos, alertas generales, solicitud de consultas y cotización de litigios.
+- **Membresía VIS LEGAL PREMIUM**: Capacitación jurídica mensual exclusiva para la sociedad (no escuela de litigio, sino prevención para ciudadanos y negocios), consultorio grupal mensual, check-up jurídico periódico, herramientas de prevención y tarifas preferenciales.
+- **VIS LEGAL EMPRESAS**: Asesoría corporativa integral, contratos, laboral y cumplimiento regulatorio para pymes y corporaciones.
+- **Buzón Judicial con IA Asistida**: Clasificación, extracción y resumen de resoluciones judiciales con estricto principio de revisión humana obligatoria y confidencialidad de datos.
+
+## Pilares Tecnológicos
+- **App Móvil**: iOS & Android nativa/multiplataforma (Flutter / React Native).
+- **Backend & Seguridad**: Node.js RESTful API, PostgreSQL relacional cifrado en reposo y en tránsito.
+- **Panel Web Administrativo**: Next.js con Tailwind CSS y control de acceso basado en roles (RBAC).
+- **Garantía y Continuidad**: Cero secuestro de código. Propiedad intelectual y cuentas críticas exclusivas del titular.
+
+## Contacto Institucional
+- Sede: Quito / Guayaquil, Ecuador. Cobertura nacional e internacional.
+- Canales: App Móvil, Portal Web Oficial y Mesa de Ayuda Legal.
