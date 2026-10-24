@@ -397,3 +397,12 @@ body, aside, header, nav, main, div[class*="bg-"] {
 .site-shell>.site-nav .brand-mark{background:#173b35dd;}
 .hero-section{padding-top:136px;}
 @media(max-width:850px){.site-shell>.site-nav{left:14px;right:14px;width:auto}.hero-section{padding-top:120px}.site-shell>.site-nav .nav-links{top:70px;background:#173b35f2}.site-shell>.site-nav .nav-links a{color:#fff;text-shadow:none}}
+
+/* Override definitivo del hero: lectura editorial a la izquierda, sin mockup superpuesto */
+.site-shell .hero-section{display:grid!important;grid-template-columns:1fr!important;place-items:center start!important;text-align:left!important;}
+.site-shell .hero-copy{margin:0!important;max-width:760px!important;}
+.site-shell .hero-copy h1{max-width:760px!important;}
+.site-shell .hero-copy .hero-text{margin-left:0!important;margin-right:auto!important;}
+.site-shell .hero-actions{justify-content:flex-start!important;}
+.site-shell .trust-row{justify-content:flex-start!important;}
+.site-shell .hero-visual{display:none!important;}
