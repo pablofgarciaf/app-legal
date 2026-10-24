@@ -409,3 +409,11 @@ body, aside, header, nav, main, div[class*="bg-"] {
 .site-shell>.site-nav.site-nav-scrolled{position:fixed;top:0;left:0;right:0;width:100%;background:rgba(255,255,255,.96);border-color:rgba(27,58,53,.1);box-shadow:0 8px 24px rgba(20,35,31,.12);backdrop-filter:blur(18px);}
 .site-shell>.site-nav.site-nav-scrolled .brand,.site-shell>.site-nav.site-nav-scrolled .nav-links a,.site-shell>.site-nav.site-nav-scrolled .portal-link{color:#17211f;text-shadow:none;}
 .site-shell>.site-nav.site-nav-scrolled .menu-button{color:#17211f;}
+/* Movimiento sutil del landing para que la experiencia no sea estática */
+@keyframes visFadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.site-shell .proof-strip,.site-shell .content-section,.site-shell .method-section,.site-shell .portal-section,.site-shell .team-section,.site-shell .integration-section,.site-shell .faq-section,.site-shell .contact-section{animation:visFadeUp .75s ease both;}
+.site-shell .area-card,.site-shell .team-grid article,.site-shell .portal-window{transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease;}
+.site-shell .area-card:hover,.site-shell .team-grid article:hover,.site-shell .portal-window:hover{transform:translateY(-7px);box-shadow:0 22px 42px rgba(27,58,53,.16);border-color:#b27a3866;}
+.site-shell .hero-section{background-attachment:fixed;}
+@media(max-width:850px){.site-shell .hero-section{background-attachment:scroll;}}
+@media(prefers-reduced-motion:reduce){.site-shell .proof-strip,.site-shell .content-section,.site-shell .method-section,.site-shell .portal-section,.site-shell .team-section,.site-shell .integration-section,.site-shell .faq-section,.site-shell .contact-section{animation:none}.site-shell .hero-section{background-attachment:scroll}}
