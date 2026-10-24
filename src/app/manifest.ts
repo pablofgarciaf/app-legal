@@ -11,7 +11,7 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#173D38",
     icons: [
       {
-        src: "/brand/vis-legal-shield-transparent.png",
+        src: "logo.png",
         sizes: "192x192",
         type: "image/png",
       },

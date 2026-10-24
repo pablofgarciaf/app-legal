@@ -60,7 +60,9 @@ export default function RootLayout({
         <SchemaMarkup />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <link rel="icon" href="/brand/vis-legal-shield-transparent.png" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
         <meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)" />
         {/* Inline script to prevent flash of wrong theme */}

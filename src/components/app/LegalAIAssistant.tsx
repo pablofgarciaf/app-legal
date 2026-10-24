@@ -11,12 +11,10 @@ import {
   Scale,
   Search,
   Lock,
-  Key,
   Cpu,
   Copy,
   Check,
   FileCheck,
-  Terminal,
 } from "lucide-react";
 
 interface LegalChatMessage {
@@ -29,8 +27,6 @@ interface LegalChatMessage {
 }
 
 export default function LegalAIAssistant() {
-  const [showKeyConfig, setShowKeyConfig] = useState(false);
-  const [geminiApiKey, setGeminiApiKey] = useState("");
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const [messages, setMessages] = useState<LegalChatMessage[]>([
@@ -92,7 +88,6 @@ Tengo indexado el marco normativo vigente de la **República del Ecuador**:
         body: JSON.stringify({
           query: queryText,
           category: selectedLawFilter,
-          apiKey: geminiApiKey,
         }),
       });
 
@@ -146,48 +141,11 @@ Tengo indexado el marco normativo vigente de la **República del Ecuador**:
           </div>
         </div>
 
-        {/* Right side: Key configuration button */}
-        <div className="flex items-center space-x-2">
-          <button
-            onClick={() => setShowKeyConfig(!showKeyConfig)}
-            className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center space-x-1.5 border border-slate-700 transition-all active:scale-95"
-          >
-            <Key className="w-3.5 h-3.5 text-blue-400" />
-            <span>API Key de Muestra</span>
-          </button>
-        </div>
       </div>
 
-      {/* API Key Drawer / Configuration Banner */}
-      {showKeyConfig && (
-        <div className="p-4 bg-blue-950/40 border-b border-blue-800/40 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-          <div className="space-y-1 w-full sm:w-auto">
-            <div className="flex items-center space-x-2 text-blue-300 font-bold">
-              <Terminal className="w-4 h-4" />
-              <span>Configuración de Google Gemini API Key</span>
-            </div>
-            <p className="text-[11px] text-slate-400">
-              La clave se configura exclusivamente en el servidor; nunca la pegues en el navegador.
-            </p>
-          </div>
-
-          <div className="flex items-center space-x-2 w-full sm:w-auto">
-            <input
-              type="password"
-              value={geminiApiKey}
-              onChange={(e) => setGeminiApiKey(e.target.value)}
-              placeholder="AIzaSy..."
-              className="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 text-xs font-mono w-full sm:w-64 focus:outline-none focus:border-blue-500"
-            />
-            <button
-              onClick={() => setShowKeyConfig(false)}
-              className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shrink-0 active:scale-95"
-            >
-              Guardar
-            </button>
-          </div>
-        </div>
-      )}
+      <div className="px-4 py-2 border-b border-slate-800 bg-slate-950/40 text-[11px] text-slate-400">
+        Motor configurado en servidor · usa fuentes jurídicas locales y requiere revisión profesional.
+      </div>
 
       {/* Law Quick Filters */}
       <div className="px-4 py-2.5 bg-slate-950/40 border-b border-slate-800/80 flex items-center space-x-2 overflow-x-auto text-[11px]">

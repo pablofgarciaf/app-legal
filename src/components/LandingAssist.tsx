@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Bot, MessageCircle, Send, X } from "lucide-react";
 
 export default function LandingAssist() {
@@ -8,6 +8,15 @@ export default function LandingAssist() {
   const [query, setQuery] = useState("");
   const [answer, setAnswer] = useState("Hola. Puedo orientarte de forma informativa sobre trámites y áreas legales en Ecuador.");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
 
   async function ask(event: FormEvent) {
     event.preventDefault();
@@ -26,12 +35,12 @@ export default function LandingAssist() {
   return <>
     <div className="landing-float-actions" aria-label="Contacto VIS Legal">
       <a className="whatsapp-float" href="https://wa.me/593991786275?text=Hola%20VIS%20Legal,%20quiero%20una%20orientación" target="_blank" rel="noreferrer" aria-label="Escribir por WhatsApp"><MessageCircle size={22}/><span>WhatsApp</span></a>
-      <button className="ai-float" onClick={() => setOpen(true)} aria-label="Abrir asistente jurídico"><Bot size={20}/><span>Asistente IA</span></button>
+      <button className="ai-float" onClick={() => setOpen(true)} aria-label="Abrir asistente jurídico" aria-expanded={open} aria-haspopup="dialog"><Bot size={20}/><span>Asistente IA</span></button>
     </div>
     {open && <div className="assistant-panel" role="dialog" aria-label="Asistente informativo VIS Legal">
       <div className="assistant-head"><div><strong>Asistente VIS Legal</strong><small>Orientación informativa · Ecuador</small></div><button onClick={() => setOpen(false)} aria-label="Cerrar"><X size={18}/></button></div>
       <div className="assistant-answer">{answer}</div>
-      <form onSubmit={ask} className="assistant-form"><input value={query} onChange={e => setQuery(e.target.value)} placeholder="¿Qué necesitas saber?" aria-label="Consulta jurídica"/><button disabled={loading} aria-label="Enviar consulta"><Send size={16}/></button></form>
+      <form onSubmit={ask} className="assistant-form"><input autoFocus value={query} onChange={e => setQuery(e.target.value)} placeholder="¿Qué necesitas saber?" aria-label="Consulta jurídica"/><button disabled={loading} aria-label="Enviar consulta"><Send size={16}/></button></form>
       <small className="assistant-disclaimer">No reemplaza asesoría profesional ni calcula vencimientos procesales.</small>
     </div>}
   </>;

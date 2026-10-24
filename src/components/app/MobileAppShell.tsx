@@ -45,6 +45,8 @@ import {
 } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import ClientView from "./ClientView";
+import ClientPortal from "./ClientPortal";
+import LawyerFieldPanel from "./LawyerFieldPanel";
 import LawyerJudicialInbox from "./LawyerJudicialInbox";
 import CRMView from "./CRMView";
 import LegalAIAssistant from "./LegalAIAssistant";
@@ -219,15 +221,22 @@ export default function MobileAppShell({ initialRole = "cliente", demoMode = fal
               </span>
             </div>
 
-            {/* Supabase status badge */}
-            <button
-              onClick={() => setShowSupabaseModal(true)}
-              className="flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold transition-all active:scale-95"
-              title="Ver estado de conexión Supabase PostgreSQL 16"
-            >
-              <Database className="w-3 h-3 text-emerald-400" />
-              <span>Supabase {supabaseHealth?.latencyMs || 28}ms</span>
-            </button>
+            {/* Honest runtime state: demo never presents a fake cloud connection. */}
+            {demoMode ? (
+              <span className="flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-700 border border-amber-500/30 text-[10px] font-mono font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                <span>Demo local</span>
+              </span>
+            ) : (
+              <button
+                onClick={() => setShowSupabaseModal(true)}
+                className="flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold transition-all active:scale-95"
+                title="Ver estado de conexión Supabase PostgreSQL 16"
+              >
+                <Database className="w-3 h-3 text-emerald-400" />
+                <span>{supabaseHealth ? `Supabase ${supabaseHealth.latencyMs}ms` : "Supabase verificando"}</span>
+              </button>
+            )}
           </div>
 
           {/* Center: 4 Prominent Role Buttons */}
@@ -349,16 +358,20 @@ export default function MobileAppShell({ initialRole = "cliente", demoMode = fal
           {/* Brand Header */}
           <div className="p-6 border-b border-[var(--border)]">
             <div className="flex items-center space-x-3.5">
-              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center font-bold shadow-lg shadow-blue-500/25 ring-1 ring-white/20">
-                <Scale className="w-6 h-6 text-white" />
+              <div className="relative w-11 h-11 rounded-2xl overflow-hidden border border-[#c99a5b]/50 shadow-md bg-slate-900 flex items-center justify-center shrink-0">
+                <img
+                  src="/logo.png"
+                  alt="VIS LEGAL"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="min-w-0">
                 <div className="flex items-center space-x-1.5">
                   <h1 className="font-bold text-sm tracking-wider truncate text-[var(--fg)]">
                     VIS LEGAL
                   </h1>
-                  <span className="px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-blue-500/15 text-blue-500 dark:text-blue-400 border border-blue-500/25">
-                    iOS PRO
+                  <span className="px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-[#c99a5b]/15 text-[#c99a5b] border border-[#c99a5b]/25">
+                    PRO
                   </span>
                 </div>
                 <p className="text-[10px] text-[var(--fg-2)] font-mono tracking-tight truncate">
@@ -450,6 +463,14 @@ export default function MobileAppShell({ initialRole = "cliente", demoMode = fal
                       ? "Tenant Corporativo"
                       : "Gerencia & Finanzas"}
                   </p>
+                  {role === "cliente" && (
+                    <div className="mt-2 flex items-center gap-1.5 text-[9px] font-mono uppercase tracking-wide">
+                      <span className="text-[var(--fg-2)]">Plan:</span>
+                      <span className={`rounded-full px-2 py-0.5 ${subscriptionTier === "premium" ? "bg-amber-500 text-white" : "bg-[var(--bg-3)] text-[var(--fg-1)] border border-[var(--border)]"}`}>
+                        {subscriptionTier === "premium" ? "★ VIP" : "Gratis"}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -525,6 +546,14 @@ export default function MobileAppShell({ initialRole = "cliente", demoMode = fal
                   <p className="text-[10px] text-slate-400 capitalize mt-0.5">
                     {role === "cliente" ? `Cliente (${subscriptionTier.toUpperCase()})` : roleConfig.label}
                   </p>
+                  {role === "cliente" && (
+                    <div className="mt-2 flex items-center gap-1.5 text-[9px] font-mono uppercase tracking-wide">
+                      <span className="text-slate-500">Plan:</span>
+                      <span className={`rounded-full px-2 py-0.5 ${subscriptionTier === "premium" ? "bg-amber-500 text-white" : "bg-slate-800 text-slate-300 border border-slate-700"}`}>
+                        {subscriptionTier === "premium" ? "★ VIP" : "Gratis"}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -536,7 +565,7 @@ export default function MobileAppShell({ initialRole = "cliente", demoMode = fal
         {/* ========================================================================= */}
         <div className="flex-1 flex flex-col min-w-0">
           {/* Top Bar / Global View Header */}
-          <header className="sticky top-[49px] z-20 glass border-b border-[var(--border)] px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4 transition-colors duration-200">
+          <header className="app-workspace-header sticky top-[49px] z-20 glass border-b border-[var(--border)] px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4 transition-colors duration-200">
             <div className="flex items-center space-x-3">
               {/* Mobile Menu Button */}
               <button
@@ -600,17 +629,27 @@ export default function MobileAppShell({ initialRole = "cliente", demoMode = fal
           <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full pb-24 lg:pb-12">
             {/* TAB: DASHBOARD */}
             {activeTab === "dashboard" && (
-              <div className="space-y-6">
-                {/* Hero Greeting & Stats Card */}
-                <div className={`p-6 sm:p-8 rounded-3xl bg-slate-900/90 border ${roleConfig.borderColor} flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-xl backdrop-blur-md`}>
+              <>
+                {role === "cliente" ? (
+                  <ClientPortal
+                    onOpenConsultation={() => setIsConsultationModalOpen(true)}
+                    onOpenChat={() => setActiveTab("chat")}
+                    onSelectCase={(c) => setSelectedCase(c)}
+                    subscriptionTier={subscriptionTier}
+                  />
+                ) : role === "abogado" ? (
+                  <LawyerFieldPanel
+                    onSelectCase={(c) => setSelectedCase(c)}
+                    onOpenConsultation={() => setIsConsultationModalOpen(true)}
+                  />
+                ) : (
+                  <div className="space-y-6">
+                    {/* Hero Greeting & Stats Card */}
+                    <div className={`p-6 sm:p-8 rounded-3xl bg-slate-900/90 border ${roleConfig.borderColor} flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-xl backdrop-blur-md`}>
                   <div className="space-y-2 max-w-2xl">
                     <div className="flex items-center space-x-2">
                       <span className={`px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider ${roleConfig.badgeBg} ${roleConfig.activeText} border ${roleConfig.borderColor}`}>
-                        {role === "cliente"
-                          ? `Portal de Cliente • Plan ${subscriptionTier.toUpperCase()}`
-                          : role === "abogado"
-                          ? "Despacho Litigante • Consejo de la Judicatura"
-                          : role === "b2b"
+                        {role === "b2b"
                           ? "Cuenta Corporativa B2B • Multi-Tenant"
                           : "Gerencia General • BIZ LEGAL S.A.S."}
                       </span>
@@ -620,21 +659,13 @@ export default function MobileAppShell({ initialRole = "cliente", demoMode = fal
                     </div>
 
                     <h3 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
-                      {role === "cliente"
-                        ? "Bienvenido, Roberto Andrade"
-                        : role === "abogado"
-                        ? "Panel del Abogado Litigante"
-                        : role === "b2b"
+                      {role === "b2b"
                         ? "Corporación Favorita S.A. (B2B)"
                         : "Consola de Dirección BIZ LEGAL"}
                     </h3>
 
                     <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-                      {role === "cliente"
-                        ? "Monitorea tus causas legales en tiempo real, revisa providencias judiciales traducidas con IA y conversa con tus abogados patrocinadores."
-                        : role === "abogado"
-                        ? "Control central de términos fatales (Art. 73 COGEP), radicación de escritos y gestión de causas activas."
-                        : role === "b2b"
+                      {role === "b2b"
                         ? "Gestión centralizada de litigios laborales, cumplimiento societario y revisión preventiva de contratos comerciales."
                         : "Métricas ejecutivas de facturación MRR, tasa de conversión de prospectos y asignación de expedientes."}
                     </p>
@@ -862,11 +893,13 @@ export default function MobileAppShell({ initialRole = "cliente", demoMode = fal
                         <span>Abrir Asistente Gemini</span>
                         <ChevronRight className="w-4 h-4" />
                       </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+            </>
+          )}
 
             {/* TAB: CASOS */}
             {activeTab === "casos" && (
@@ -1145,68 +1178,88 @@ export default function MobileAppShell({ initialRole = "cliente", demoMode = fal
       </div>
 
       {/* ========================================================================= */}
-      {/* MOBILE BOTTOM NAVIGATION DOCK (< lg) */}
+      {/* MOBILE BOTTOM NAVIGATION DOCK (< lg) - LUXURY INSPECTION PWA STYLE */}
       {/* ========================================================================= */}
-      <nav className="app-bottom-nav lg:hidden fixed bottom-0 inset-x-0 z-40 px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] flex justify-around items-center text-[10px]" aria-label="Navegación principal">
+      <nav
+        className="app-bottom-nav lg:hidden fixed bottom-0 inset-x-0 z-40 bg-slate-950/95 dark:bg-black/95 backdrop-blur-xl border-t border-slate-800/80 px-2 pt-1 pb-[calc(0.6rem+env(safe-area-inset-bottom,0px))] flex justify-around items-center shadow-[0_-8px_30px_rgba(0,0,0,0.5)] transition-all"
+        aria-label="Navegación móvil principal"
+      >
+        {/* Item 1: Inicio / Panel */}
         <button
           onClick={() => setActiveTab("dashboard")}
-          className={`app-bottom-nav-item flex flex-col items-center py-1 px-2 rounded-xl transition-all active:scale-95 ${
+          className={`app-bottom-nav-item flex-1 flex flex-col items-center justify-center min-h-[44px] min-w-[44px] py-1 px-1 rounded-2xl transition-all duration-200 active:scale-95 ${
             activeTab === "dashboard"
-              ? "text-blue-400 font-bold"
-              : "text-slate-400"
+              ? "text-blue-400 font-bold bg-blue-500/10 shadow-sm"
+              : "text-slate-400 hover:text-slate-200"
           }`}
+          aria-label="Panel principal"
         >
-          <LayoutDashboard className="w-4 h-4 mb-0.5" />
-          <span>Inicio</span>
+          <LayoutDashboard className="w-5 h-5 mb-0.5 shrink-0 transition-transform active:scale-90" />
+          <span className="text-[10px] tracking-tight truncate">
+            {role === "cliente" ? "Mi Caso" : role === "abogado" ? "Campo" : "Inicio"}
+          </span>
         </button>
 
+        {/* Item 2: Casos / Expedientes */}
         <button
           onClick={() => setActiveTab("casos")}
-          className={`app-bottom-nav-item flex flex-col items-center py-1 px-2 rounded-xl transition-all active:scale-95 ${
+          className={`app-bottom-nav-item flex-1 flex flex-col items-center justify-center min-h-[44px] min-w-[44px] py-1 px-1 rounded-2xl transition-all duration-200 active:scale-95 relative ${
             activeTab === "casos"
-              ? "text-blue-400 font-bold"
-              : "text-slate-400"
+              ? "text-blue-400 font-bold bg-blue-500/10 shadow-sm"
+              : "text-slate-400 hover:text-slate-200"
           }`}
+          aria-label="Expedientes judiciales"
         >
-          <FolderKanban className="w-4 h-4 mb-0.5" />
-          <span>Casos</span>
+          <FolderKanban className="w-5 h-5 mb-0.5 shrink-0 transition-transform active:scale-90" />
+          <span className="text-[10px] tracking-tight truncate">Expedientes</span>
         </button>
 
+        {/* Item 3: Buzón IA / Notificaciones */}
         <button
           onClick={() => setActiveTab("buzon")}
-          className={`app-bottom-nav-item flex flex-col items-center py-1 px-2 rounded-xl transition-all active:scale-95 relative ${
+          className={`app-bottom-nav-item flex-1 flex flex-col items-center justify-center min-h-[44px] min-w-[44px] py-1 px-1 rounded-2xl transition-all duration-200 active:scale-95 relative ${
             activeTab === "buzon"
-              ? "text-blue-400 font-bold"
-              : "text-slate-400"
+              ? "text-rose-400 font-bold bg-rose-500/10 shadow-sm"
+              : "text-slate-400 hover:text-slate-200"
           }`}
+          aria-label="Buzón de notificaciones judiciales IA"
         >
-          <Sparkles className="w-4 h-4 mb-0.5" />
-          <span className="w-1.5 h-1.5 rounded-full bg-rose-500 absolute top-1 right-2"></span>
-          <span>Buzón IA</span>
+          <div className="relative">
+            <Sparkles className="w-5 h-5 mb-0.5 shrink-0 transition-transform active:scale-90" />
+            <span className="w-2 h-2 rounded-full bg-rose-500 absolute -top-0.5 -right-1 animate-pulse" />
+          </div>
+          <span className="text-[10px] tracking-tight truncate">Buzón IA</span>
         </button>
 
+        {/* Item 4: Gemini IA */}
         <button
           onClick={() => setActiveTab("ai")}
-          className={`app-bottom-nav-item flex flex-col items-center py-1 px-2 rounded-xl transition-all active:scale-95 ${
+          className={`app-bottom-nav-item flex-1 flex flex-col items-center justify-center min-h-[44px] min-w-[44px] py-1 px-1 rounded-2xl transition-all duration-200 active:scale-95 ${
             activeTab === "ai"
-              ? "text-blue-400 font-bold"
-              : "text-slate-400"
+              ? "text-blue-400 font-bold bg-blue-500/10 shadow-sm"
+              : "text-slate-400 hover:text-slate-200"
           }`}
+          aria-label="Asistente de inteligencia artificial legal"
         >
-          <Cpu className="w-4 h-4 mb-0.5" />
-          <span>Gemini IA</span>
+          <Cpu className="w-5 h-5 mb-0.5 shrink-0 transition-transform active:scale-90" />
+          <span className="text-[10px] tracking-tight truncate">Gemini</span>
         </button>
 
+        {/* Item 5: Chat Cifrado */}
         <button
           onClick={() => setActiveTab("chat")}
-          className={`app-bottom-nav-item flex flex-col items-center py-1 px-2 rounded-xl transition-all active:scale-95 ${
+          className={`app-bottom-nav-item flex-1 flex flex-col items-center justify-center min-h-[44px] min-w-[44px] py-1 px-1 rounded-2xl transition-all duration-200 active:scale-95 relative ${
             activeTab === "chat"
-              ? "text-blue-400 font-bold"
-              : "text-slate-400"
+              ? "text-emerald-400 font-bold bg-emerald-500/10 shadow-sm"
+              : "text-slate-400 hover:text-slate-200"
           }`}
+          aria-label="Despacho y chat cifrado"
         >
-          <MessageSquare className="w-4 h-4 mb-0.5" />
-          <span>Chat</span>
+          <div className="relative">
+            <MessageSquare className="w-5 h-5 mb-0.5 shrink-0 transition-transform active:scale-90" />
+            <span className="w-2 h-2 rounded-full bg-emerald-500 absolute -top-0.5 -right-1" />
+          </div>
+          <span className="text-[10px] tracking-tight truncate">Chat</span>
         </button>
       </nav>
 

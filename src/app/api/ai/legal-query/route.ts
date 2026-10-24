@@ -6,6 +6,8 @@ export async function POST(req: Request) {
     let query = "";
     let category = "todas";
     let apiKey = process.env.GEMINI_API_KEY || "";
+    const nvidiaApiKey = process.env.NVIDIA_API_KEY || "";
+    const nvidiaModel = process.env.NVIDIA_MODEL || "nvidia/nemotron-3.5-bolt-e4b";
 
     try {
       const text = await req.text();
@@ -13,9 +15,6 @@ export async function POST(req: Request) {
         const body = JSON.parse(text);
         query = typeof body === "string" ? body : body?.query || "";
         category = body?.category || "todas";
-        if (body?.apiKey && typeof body.apiKey === "string" && body.apiKey.trim().length > 5) {
-          apiKey = body.apiKey.trim();
-        }
       } catch {
         query = text || "";
       }
@@ -25,6 +24,46 @@ export async function POST(req: Request) {
 
     if (!query || typeof query !== "string") {
       return NextResponse.json({ error: "La consulta no es válida" }, { status: 400 });
+    }
+
+    if (nvidiaApiKey) {
+      try {
+        const nvidiaRes = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${nvidiaApiKey}`,
+          },
+          body: JSON.stringify({
+            model: nvidiaModel,
+            temperature: 0.2,
+            max_tokens: 800,
+            messages: [
+              {
+                role: "system",
+                content: "Eres el asistente informativo de VIS Legal para Ecuador. No eres abogado, no das asesoría definitiva ni calculas vencimientos. Explica con claridad, reconoce incertidumbre, recomienda revisión humana y nunca inventes artículos, jurisprudencia o plazos.",
+              },
+              { role: "user", content: query },
+            ],
+          }),
+        });
+        if (nvidiaRes.ok) {
+          const nvidiaData = await nvidiaRes.json();
+          const generatedText = nvidiaData.choices?.[0]?.message?.content;
+          if (generatedText) {
+            return NextResponse.json({
+              answer: generatedText,
+              provider: `NVIDIA ${nvidiaModel} (revisión humana requerida)`,
+              citations: ["Constitución de la República del Ecuador (CRE 2008)", "Código Orgánico General de Procesos (COGEP)"],
+              timestamp: new Date().toISOString(),
+            });
+          }
+        } else {
+          console.warn("NVIDIA AI provider returned", nvidiaRes.status);
+        }
+      } catch (nvidiaError) {
+        console.warn("NVIDIA AI provider fallback triggered:", nvidiaError);
+      }
     }
 
     // Attempt direct Google Gemini 1.5 Flash Call if key is real (starts with AIza and not the mock sample)

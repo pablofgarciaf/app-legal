@@ -1,4 +1,14 @@
 
+## [2026-10-23] - Judicial (VIS Legal) - Antigravity
+**Qué se hizo:** 
+1. Rediseño completo de la portada pública (`/`) con la experiencia y jerarquía de [hoasesor.com](https://hoasesor.com/): Navbar inteligente transparente sobre el hero con transición con `backdrop-blur` al hacer scroll, hero carrusel interactivo en 3 diapositivas corporativas, rejilla de servicios con microinteracciones y cards hoasesor, contadores de trayectoria en Ecuador, metodología en 3 pasos, acordeón de FAQS y formulario de contacto luxury.
+2. Construcción del panel administrativo dedicado en `/admin` con estética luxury dark de EnergyEngine (`#0c1015`, `#131a20`, `#182029`): sidebar retráctil, KPIs ejecutivos en tiempo real, tabla de expedientes con drawer interactivo de causas, directorio de clientes/empresas B2B, supervisión de abogados, buzón de providencias SATJE procesadas con IA y gestión de leads CRM.
+3. Transformación de la aplicación `/app` estilo Mobile WebApp e Inspection App de EnergyEngine: navegación móvil inferior (*Bottom Navigation Bar*) con target táctil 44x44px y `safe-area-inset-bottom`, vista cliente ('Portal Mi Caso') con stepper procesal, feed explicativo en lenguaje claro y contacto 1 a 1, y vista abogado ('Panel Judicial de Campo') con semáforo procesal, lector de providencias IA con generador de borradores y registro de diligencias de campo.
+**Resultado:** Validación estricta superada: `npx tsc --noEmit` completó con 0 errores y `npm run build` generó exitosamente las 20 rutas estáticas y dinámicas (incluyendo `/`, `/admin` y `/app`) con código de salida 0.
+**Skills usadas/modificadas:** reglas-seguridad, registrar-avance, 01_architecture_quality_agent, 02_development_agent, 07_flujo_trabajo_hermes.
+**Próximos pasos:** Validar interacciones en vivo en navegador con el cliente y enlazar con endpoints Supabase autenticados para entorno de producción.
+**Archivos modificados:** `src/app/page.tsx`, `src/app/globals.css`, `src/app/admin/page.tsx`, `src/app/app/page.tsx`, `src/components/app/MobileAppShell.tsx`, `src/components/app/ClientPortal.tsx`, `src/components/app/LawyerFieldPanel.tsx`, `AVANCE.md`.
+
 ## [2026-10-23] - VIS Legal - Codex
 **Qué se hizo:** Se separó la portada pública de VIS Legal de la aplicación existente. La ruta `/` ahora presenta un landing responsive con propuesta de valor, áreas de práctica, método, portal de clientes, preguntas frecuentes y formulario de contacto; la app existente quedó disponible en `/app`.
 **Resultado:** `npm run build` completó la compilación y generó las rutas `/` y `/app`. El build muestra además una advertencia preexistente porque ESLint no está instalado como dependencia de desarrollo.
