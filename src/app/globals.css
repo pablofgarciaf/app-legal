@@ -381,3 +381,19 @@ body, aside, header, nav, main, div[class*="bg-"] {
 
 .hero-section{background-image:linear-gradient(90deg,rgba(12,31,28,.88),rgba(12,31,28,.48)),url('/brand/vis-legal-hero.png');background-size:cover;background-position:center;}
 
+/* Hero final: texto editorial a la izquierda y sin tarjeta superpuesta */
+.hero-section{place-items:center start;text-align:left;}
+.hero-copy{margin-left:0;}
+.hero-copy .hero-text{margin-left:0;margin-right:auto;}
+.hero-actions{justify-content:flex-start;}
+.trust-row{justify-content:flex-start;}
+.hero-visual .case-card{display:none!important;}
+.hero-visual{opacity:.48;}
+@media(max-width:850px){.hero-section{place-items:center start;text-align:left}.hero-actions{align-items:flex-start}.trust-row{justify-content:flex-start}}
+.site-shell>.site-nav{position:absolute;top:0;left:24px;right:24px;width:auto;max-width:none;background:transparent;border-color:transparent;box-shadow:none;backdrop-filter:none;z-index:30;}
+.site-shell>.site-nav .brand,.site-shell>.site-nav .nav-links a,.site-shell>.site-nav .portal-link{color:#fff;text-shadow:0 1px 12px #0008;}
+.site-shell>.site-nav .brand em{color:#f0c982;}
+.site-shell>.site-nav .menu-button{color:#fff;}
+.site-shell>.site-nav .brand-mark{background:#173b35dd;}
+.hero-section{padding-top:136px;}
+@media(max-width:850px){.site-shell>.site-nav{left:14px;right:14px;width:auto}.hero-section{padding-top:120px}.site-shell>.site-nav .nav-links{top:70px;background:#173b35f2}.site-shell>.site-nav .nav-links a{color:#fff;text-shadow:none}}
