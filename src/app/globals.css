@@ -406,3 +406,6 @@ body, aside, header, nav, main, div[class*="bg-"] {
 .site-shell .hero-actions{justify-content:flex-start!important;}
 .site-shell .trust-row{justify-content:flex-start!important;}
 .site-shell .hero-visual{display:none!important;}
+.site-shell>.site-nav.site-nav-scrolled{position:fixed;top:0;left:0;right:0;width:100%;background:rgba(255,255,255,.96);border-color:rgba(27,58,53,.1);box-shadow:0 8px 24px rgba(20,35,31,.12);backdrop-filter:blur(18px);}
+.site-shell>.site-nav.site-nav-scrolled .brand,.site-shell>.site-nav.site-nav-scrolled .nav-links a,.site-shell>.site-nav.site-nav-scrolled .portal-link{color:#17211f;text-shadow:none;}
+.site-shell>.site-nav.site-nav-scrolled .menu-button{color:#17211f;}
