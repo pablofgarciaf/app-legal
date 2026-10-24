@@ -426,3 +426,5 @@ body, aside, header, nav, main, div[class*="bg-"] {
 .light .app-private aside{background:rgba(255,255,255,.92)!important;border-color:#dedee5!important;box-shadow:8px 0 24px rgba(22,31,42,.05);}
 .light .app-private main{background:#f2f2f7;}
 .light .app-private .luxury-glass,.light .app-private .luxury-glass-gold{background:#fff!important;border-color:#dedee5!important;box-shadow:0 8px 24px rgba(22,31,42,.08)!important;color:#17211f;}
+.site-nav .brand-mark{background:#173d36 url('/brand/vis-legal-shield-transparent.png') center/72% no-repeat!important;}
+.site-nav .brand-mark svg{display:none!important;}
