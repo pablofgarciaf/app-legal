@@ -353,3 +353,31 @@ body, aside, header, nav, main, div[class*="bg-"] {
 
 .story-section{max-width:1240px;margin:auto;padding:120px 32px;display:grid;grid-template-columns:1fr .8fr;gap:100px;align-items:center}.story-copy h2,.team-section h2,.integration-section h2{font-family:var(--font-playfair),Georgia,serif;font-size:clamp(38px,4vw,60px);line-height:1.04;letter-spacing:-.04em;margin:16px 0}.story-copy>p:not(.eyebrow){color:#69736d;line-height:1.8;max-width:560px}.story-stats{display:flex;gap:38px;margin-top:40px}.story-stats strong,.story-stats span{display:block}.story-stats strong{font-family:var(--font-playfair),Georgia,serif;color:#a87535;font-size:28px}.story-stats span{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#7a817b;margin-top:4px}.story-card{background:#1b3a35;color:#f6f3ee;padding:38px;min-height:280px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:22px 25px 45px #1b3a3528}.story-number{color:#d4a55d;font-size:11px;letter-spacing:.15em}.story-card p{font-family:var(--font-playfair),Georgia,serif;font-size:28px;line-height:1.2}.story-signature{color:#bdc9c0;font-size:11px}.team-section{background:#e9e5dc;padding:110px max(32px,calc((100% - 1176px)/2))}.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.team-grid article{border-top:1px solid #bdb8ad;padding-top:20px}.team-grid span{color:#a87535;font-size:11px}.team-grid h3{font-family:var(--font-playfair),Georgia,serif;font-size:29px;margin:40px 0 10px}.team-grid p{color:#69736d;line-height:1.7;font-size:13px}.integration-section{max-width:1240px;margin:auto;padding:120px 32px;display:grid;grid-template-columns:.8fr 1.2fr;gap:80px}.integration-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #d9d3c8}.integration-grid span{padding:22px 0;border-bottom:1px solid #d9d3c8;color:#59645d;font-size:13px}.integration-grid strong{color:#a87535;margin-right:15px}@media(max-width:850px){.story-section,.integration-section{grid-template-columns:1fr;padding:80px 22px;gap:45px}.team-section{padding:80px 22px}.team-grid{grid-template-columns:1fr}.story-stats{gap:20px;flex-wrap:wrap}.integration-grid{grid-template-columns:1fr}}
 
+/* VIS Legal: hero de firma profesional, estable y legible en primera pantalla */
+.site-nav{max-width:none;width:calc(100% - 48px);padding-inline:max(24px,calc((100% - 1240px)/2));}
+.hero-section{max-width:none;width:100%;min-height:clamp(560px,72vh,700px);padding:96px max(24px,calc((100% - 1180px)/2));display:grid;grid-template-columns:1fr;place-items:center;text-align:center;position:relative;overflow:hidden;background:linear-gradient(90deg,rgba(12,31,28,.86),rgba(12,31,28,.52)),radial-gradient(circle at 80% 20%,#b27a3866,transparent 32%),linear-gradient(135deg,#193d37,#526b61);color:#fff;}
+.hero-section:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,31,28,.32),transparent 70%);pointer-events:none;}
+.hero-copy{position:relative;z-index:3;max-width:850px;}
+.hero-copy .eyebrow{color:#f0c982;}
+.hero-copy h1{max-width:none;color:#fff;font-size:clamp(44px,6vw,78px);line-height:1.02;text-wrap:balance;margin:20px 0;}
+.hero-copy h1 span{color:#f0c982;}
+.hero-text{max-width:700px;margin:0 auto;color:#f4f5f1;font-size:18px;line-height:1.65;}
+.hero-actions{justify-content:center;}
+.hero-actions .text-link{color:#fff;}
+.trust-row{justify-content:center;color:#f2eee4;}
+.hero-visual{position:absolute;inset:0;min-height:0;z-index:1;pointer-events:none;opacity:.42;}
+.hero-visual:after{display:none;}
+.hero-orbit{border-color:#f0c98255;}
+.case-card{position:absolute;right:8%;bottom:8%;width:310px;opacity:.72;transform:rotate(-3deg);}
+.hero-visual .floating-note{display:none;}
+.proof-strip{position:relative;z-index:4;}
+.landing-float-actions{z-index:80;}
+.site-footer div{flex-wrap:wrap;}
+@media(max-width:850px){.site-nav{width:calc(100% - 28px);padding-inline:20px}.hero-section{min-height:640px;padding:94px 22px 70px}.hero-copy h1{font-size:clamp(43px,11vw,60px)}.hero-text{font-size:16px}.case-card{right:-12%;bottom:3%;width:265px;opacity:.28}.hero-actions{align-items:center}.trust-row{flex-wrap:wrap;}}
+@media(max-width:500px){.hero-section{min-height:650px;padding-top:88px}.hero-copy h1{font-size:45px}.hero-copy .eyebrow{font-size:10px}.hero-text{font-size:15px}.case-card{display:none}.site-footer div{gap:10px 16px;}}
+@keyframes visHeroIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.hero-copy{animation:visHeroIn .7s cubic-bezier(.22,1,.36,1) both}.hero-visual{animation:visHeroIn 1s .12s cubic-bezier(.22,1,.36,1) both}.button,.text-link{transition:transform .2s ease,box-shadow .2s ease}.button:hover,.text-link:hover{transform:translateY(-2px)}
+@media(prefers-reduced-motion:reduce){.hero-copy,.hero-visual{animation:none}.button,.text-link{transition:none}}
+
+.hero-section{background-image:linear-gradient(90deg,rgba(12,31,28,.88),rgba(12,31,28,.48)),url('/brand/vis-legal-hero.png');background-size:cover;background-position:center;}
+
