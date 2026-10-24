@@ -417,3 +417,12 @@ body, aside, header, nav, main, div[class*="bg-"] {
 .site-shell .hero-section{background-attachment:fixed;}
 @media(max-width:850px){.site-shell .hero-section{background-attachment:scroll;}}
 @media(prefers-reduced-motion:reduce){.site-shell .proof-strip,.site-shell .content-section,.site-shell .method-section,.site-shell .portal-section,.site-shell .team-section,.site-shell .integration-section,.site-shell .faq-section,.site-shell .contact-section{animation:none}.site-shell .hero-section{background-attachment:scroll}}
+/* Portal: superficie clara, jerarquía de app y navegación iOS */
+.light .app-private.app-shell{background:#f2f2f7!important;color:#17211f!important;}
+.light .app-private .app-topbar{background:rgba(255,255,255,.94)!important;border-color:#d9d9df!important;box-shadow:0 6px 20px rgba(22,31,42,.08)!important;}
+.light .app-private .app-bottom-nav{background:rgba(255,255,255,.96)!important;border-top-color:#d9d9df!important;box-shadow:0 -8px 24px rgba(22,31,42,.1)!important;}
+.light .app-private .app-bottom-nav-item{color:#6b7280;}
+.light .app-private .app-bottom-nav-item.text-blue-400,.light .app-private .app-bottom-nav-item.text-amber-400,.light .app-private .app-bottom-nav-item.text-purple-400,.light .app-private .app-bottom-nav-item.text-emerald-400{color:#9a6b2f!important;background:#f6ead7;}
+.light .app-private aside{background:rgba(255,255,255,.92)!important;border-color:#dedee5!important;box-shadow:8px 0 24px rgba(22,31,42,.05);}
+.light .app-private main{background:#f2f2f7;}
+.light .app-private .luxury-glass,.light .app-private .luxury-glass-gold{background:#fff!important;border-color:#dedee5!important;box-shadow:0 8px 24px rgba(22,31,42,.08)!important;color:#17211f;}
