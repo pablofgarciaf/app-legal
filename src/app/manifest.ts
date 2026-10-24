@@ -7,11 +7,11 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Aplicación Jurídica Integral y Seguimiento de Causas Judiciales en Ecuador (Titular: BIZ LEGAL S.A.S.)",
     start_url: "/",
     display: "standalone",
-    background_color: "#060911",
-    theme_color: "#2563EB",
+    background_color: "#F2F2F7",
+    theme_color: "#173D38",
     icons: [
       {
-        src: "/icon",
+        src: "/brand/vis-legal-shield-transparent.png",
         sizes: "192x192",
         type: "image/png",
       },
