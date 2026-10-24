@@ -69,7 +69,7 @@ type AppTab =
   | "b2b"
   | "supabase";
 
-export default function MobileAppShell({ initialRole = "cliente" }: { initialRole?: UserRole } = {}) {
+export default function MobileAppShell({ initialRole = "cliente", demoMode = false }: { initialRole?: UserRole; demoMode?: boolean } = {}) {
   const { theme, toggle: toggleTheme } = useTheme();
   const [role, setRole] = useState<UserRole>(initialRole);
   const [subscriptionTier, setSubscriptionTier] = useState<SubscriptionTier>("premium");
@@ -83,8 +83,9 @@ export default function MobileAppShell({ initialRole = "cliente" }: { initialRol
   const [supabaseHealth, setSupabaseHealth] = useState<SupabaseHealth | null>(null);
 
   useEffect(() => {
+    if (demoMode) return;
     checkSupabaseConnection().then(setSupabaseHealth);
-  }, []);
+  }, [demoMode]);
 
   const navigationItems = [
     {

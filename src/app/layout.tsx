@@ -60,11 +60,12 @@ export default function RootLayout({
         <SchemaMarkup />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
+        <link rel="icon" href="/brand/vis-legal-shield-transparent.png" />
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
         <meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)" />
         {/* Inline script to prevent flash of wrong theme */}
         <script dangerouslySetInnerHTML={{
-          __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.add('light')}else{document.documentElement.classList.add('dark')}}catch(e){}})();`
+          __html: `(function(){try{var t=localStorage.getItem('theme')||'light';document.documentElement.classList.add(t==='dark'?'dark':'light')}catch(e){document.documentElement.classList.add('light')}})();`
         }} />
       </head>
       <body className="min-h-screen font-sans antialiased">

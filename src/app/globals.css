@@ -27,6 +27,15 @@
 .credentials-grid p { margin-top: .7rem; color: #d5e3de; font-size: .88rem; line-height: 1.7; }
 @media (max-width: 700px) { .landing-float-actions { right: .75rem; bottom: .75rem; } .whatsapp-float, .ai-float { padding: .75rem; } .whatsapp-float span, .ai-float span { display: none; } .assistant-panel { right: .75rem; bottom: 4.8rem; } .credentials-grid { grid-template-columns: 1fr; } }
 
+/* App privada: modo claro como estado inicial, con contraste y superficies iOS. */
+.light .app-private { --bg: #f2f2f7; --fg: #111827; --border: rgba(0,0,0,.1); }
+.light .app-private [class*="bg-slate-950"], .light .app-private [class*="bg-neutral-950"], .light .app-private [class*="bg-black"] { background-color: #f2f2f7 !important; }
+.light .app-private [class*="bg-slate-900"], .light .app-private [class*="bg-slate-800"], .light .app-private [class*="bg-neutral-900"] { background-color: #ffffff !important; }
+.light .app-private [class*="text-slate-100"], .light .app-private [class*="text-slate-200"], .light .app-private [class*="text-white"] { color: #17211f !important; }
+.light .app-private [class*="text-slate-300"], .light .app-private [class*="text-slate-400"] { color: #5d6b67 !important; }
+.light .app-private [class*="border-slate-700"], .light .app-private [class*="border-slate-800"] { border-color: rgba(0,0,0,.1) !important; }
+.light .app-private .app-topbar { background: rgba(255,255,255,.92); }
+
 /* ═══════════════════════════════════════════════════════════════════════════
    VIS LEGAL — Design System
    Inspirado en: Apple iOS 18, Linear, Vercel y Notion
